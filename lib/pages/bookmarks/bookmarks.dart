@@ -4,11 +4,12 @@ import 'package:feng_pei/common/entity/entitys.dart';
 import 'package:feng_pei/common/utils/utils.dart';
 import 'package:feng_pei/common/values/values.dart';
 import 'package:feng_pei/common/widgets/widgets.dart';
-import 'package:feng_pei/pages/evaluate_result/jyd_evaluate_result.dart';
+import 'package:feng_pei/pages/evaluate_result/xxd_evaluate_result.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:toast/toast.dart';
 
+import '../evaluate_result/kxd_evaluate_result.dart';
 import '../webview/webview.dart';
 
 class BookmarksPage extends StatefulWidget {
@@ -114,7 +115,7 @@ class _BookmarksPageState extends State<BookmarksPage> {
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) =>
-                                            WebViewPage(data: data),
+                                            KXDEvaluateResult(data: data),
                                       ),
                                     );
                                   } else if (data.type == 1) {
@@ -123,7 +124,7 @@ class _BookmarksPageState extends State<BookmarksPage> {
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) =>
-                                            JYDEvaluateResult(data: data),
+                                            XXDEvaluateResult(data: data),
                                       ),
                                     );
                                   } else if (data.type == 2) {

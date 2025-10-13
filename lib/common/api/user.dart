@@ -30,4 +30,10 @@ class UserAPI {
     var response = await HttpUtil().post('/getCalculateDate', params: params);
     return CalculateDataEntity.fromJson(response);
   }
+
+  /// modifyRefuseClientData
+  static Future<CalculateDataEntity> modifyRefuseClientData({required FormData params}) async {
+    var response = await HttpUtil().post('/modifyRefuseClientData', params: params);
+    return CalculateDataEntity.fromJson(response);
+  }
 }

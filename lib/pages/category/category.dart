@@ -10,6 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:toast/toast.dart';
 
+import '../client/kxd_client.dart';
+
 class CategoryPage extends StatefulWidget {
   const CategoryPage({Key? key}) : super(key: key);
 
@@ -110,30 +112,40 @@ class _CategoryPageState extends State<CategoryPage> {
                       margin: EdgeInsets.only(right: duSetWidth(12)),
                       child: myButton(
                         onPressed: () {
-                          if (data.status == 2) {
+                          if (data.type == 0) {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) =>
-                                    ClientPassPage(data: data),
+                                    KXDClient(data: data),
                               ),
                             );
-                          } else if (data.status == 3) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    ClientRefusePage(data: data),
-                              ),
-                            );
-                          } else if (data.status == 1) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    ClientWaitCheckPage(data: data),
-                              ),
-                            );
+                          } else {
+                            if (data.status == 2) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      ClientPassPage(data: data),
+                                ),
+                              );
+                            } else if (data.status == 3) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      ClientRefusePage(data: data),
+                                ),
+                              );
+                            } else if (data.status == 1) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      ClientWaitCheckPage(data: data),
+                                ),
+                              );
+                            }
                           }
                         },
                         gbColor: AppColors.buttonStatueOne,

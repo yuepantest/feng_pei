@@ -46,6 +46,7 @@ Widget myButton(
     double width = 0,
     required double cornerRadius,
     required Color gbColor,
+    Color sideColor = AppColors.transparency,
     required String title,
     required Color fontColor,
     required double fontSize}) {
@@ -58,7 +59,13 @@ Widget myButton(
               foregroundColor: fontColor, // 设置按钮的前景色（文本颜色）
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(cornerRadius)), // 形状
-              elevation: 2, // 阴影高度
+              shadowColor: Colors.transparent,     // 去掉阴影
+              elevation: 0,
+              side: BorderSide(
+                // 设置边框
+                color: sideColor,
+                width: 1,
+              ),
             ),
             onPressed: onPressed,
             child: IntrinsicWidth(

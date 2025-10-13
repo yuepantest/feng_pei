@@ -45,6 +45,8 @@ class Data {
   String contentFour;
   String titleFive;
   String contentFive;
+  String titleSix;
+  String contentSix;
   String rate;
   String applicationNumber;
   String bankIdContent;
@@ -64,6 +66,8 @@ class Data {
     required this.contentFour,
     required this.titleFive,
     required this.contentFive,
+    required this.titleSix,
+    required this.contentSix,
     required this.rate,
     required this.applicationNumber,
     required this.bankIdContent,
@@ -84,6 +88,8 @@ class Data {
     contentFour: json["content_four"],
     titleFive: json["title_five"]??"",
     contentFive: json["content_five"]??"",
+    titleSix: json["title_six"]??"",
+    contentSix: json["content_six"]??"",
     rate: json["rate"],
     applicationNumber: json["applicationNumber"],
     bankIdContent: json["bankIdContent"],
@@ -104,6 +110,8 @@ class Data {
     "content_four": contentFour,
     "title_five": titleFive,
     "content_five": contentFive,
+    "title_six": titleSix,
+    "content_six": contentSix,
     "rate": rate,
     "applicationNumber": applicationNumber,
     "bankIdContent": bankIdContent,

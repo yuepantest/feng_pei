@@ -4,18 +4,18 @@ import 'package:feng_pei/common/values/colors.dart';
 import 'package:feng_pei/common/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
-import 'jyd_evaluate_result_second.dart';
+import 'xxd_evaluate_result_second.dart';
 
-class JYDEvaluateResult extends StatefulWidget {
+class XXDEvaluateResult extends StatefulWidget {
   final ClientDatum data;
 
-  const JYDEvaluateResult({Key? key, required this.data}) : super(key: key);
+  const XXDEvaluateResult({Key? key, required this.data}) : super(key: key);
 
   @override
-  _JYDEvaluateResultState createState() => _JYDEvaluateResultState();
+  _XXDEvaluateResultState createState() => _XXDEvaluateResultState();
 }
 
-class _JYDEvaluateResultState extends State<JYDEvaluateResult> {
+class _XXDEvaluateResultState extends State<XXDEvaluateResult> {
   @override
   Widget build(BuildContext context) {
     var data = widget.data;

@@ -38,7 +38,8 @@ class AppColors {
   static const Color thirdElementText = Color.fromARGB(255, 141, 141, 142);
 
   // *****************************************
-
+  ///  透明色
+  static const Color transparency = Color.fromARGB(0, 0, 0, 0);
   /// tabBar 默认颜色 灰色
   static const Color tabBarElement = Color.fromARGB(255, 208, 208, 208);
 
@@ -50,8 +51,7 @@ class AppColors {
   static const Color buttonStatueTwo = Color.fromARGB(255, 97, 205, 114);
   static const Color buttonStatueThree = Color.fromARGB(255, 234, 60, 67);
   static const Color buttonStatueFour = Color.fromARGB(255, 131, 207, 217);
-
-
+  static const Color buttonStatueFive = Color.fromARGB(255, 246, 237, 233);
   static const Color shapeJYDBannerBackgroundStart =  Color.fromARGB(
       238, 245, 229, 221);
   static const Color shapeJYDBannerBackgroundEnd =  Color.fromARGB(
