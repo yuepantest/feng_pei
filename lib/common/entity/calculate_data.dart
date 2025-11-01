@@ -91,7 +91,7 @@ class Data {
     titleSix: json["title_six"]??"",
     contentSix: json["content_six"]??"",
     rate: json["rate"],
-    applicationNumber: json["applicationNumber"],
+    applicationNumber: json["applicationNumber"]??"暂无编号",
     bankIdContent: json["bankIdContent"],
     identityCardContent: json["identityCardContent"],
     id: json["id"],

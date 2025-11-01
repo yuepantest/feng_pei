@@ -26,11 +26,7 @@ class _KXDEvaluateResultSecondState extends State<KXDEvaluateResultSecond> {
 
   Future<void> getListData(ClientDatum data) async {
     var formData = FormData.fromMap({
-      'assessMoney': data.assessMoney,
-      'bankId': data.bankId,
-      'identityCard': data.identityCard,
       'clientId': data.id,
-      'type': data.type,
     });
     CalculateDataEntity res = await UserAPI.getCalculateDate(params: formData);
     if (res.code == 1) {
