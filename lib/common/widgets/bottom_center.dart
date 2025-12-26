@@ -15,7 +15,7 @@ centerSheet(
           padding: EdgeInsets.all(duSetWidth(15)),
           decoration: BoxDecoration(
             color: AppColors.secondX,
-            borderRadius: BorderRadius.circular(1),
+            borderRadius: BorderRadius.circular(10),
           ),
           width: duSetWidth(250),
           child: Column(
@@ -25,7 +25,7 @@ centerSheet(
               Text('1.客户资质评估', style: TextStyle(fontSize: 12)),
               SizedBox(height: 10),
               Image.asset(
-                "assets/images/arrow_down.png",
+                "assets/images/arrow-down.png",
                 fit: BoxFit.contain,
                 width: duSetWidth(30),
                 height: duSetHeight(30),
@@ -34,7 +34,7 @@ centerSheet(
               Text('2.准备材料进件', style: TextStyle(fontSize: 12)),
               SizedBox(height: 10),
               Image.asset(
-                "assets/images/arrow_down.png",
+                "assets/images/arrow-down.png",
                 fit: BoxFit.contain,
                 width: duSetWidth(30),
                 height: duSetHeight(30),
@@ -43,7 +43,7 @@ centerSheet(
               Text('3.审核（资料提交后会有审核人员受理审核）',textAlign: TextAlign.center, style: TextStyle(fontSize: 12)),
               SizedBox(height: 10),
               Image.asset(
-                "assets/images/arrow_down.png",
+                "assets/images/arrow-down.png",
                 fit: BoxFit.contain,
                 width: duSetWidth(30),
                 height: duSetHeight(30),
@@ -52,7 +52,7 @@ centerSheet(
               Text('4.通过线上/线下签署借款合同', style: TextStyle(fontSize: 12)),
               SizedBox(height: 10),
               Image.asset(
-                "assets/images/arrow_down.png",
+                "assets/images/arrow-down.png",
                 fit: BoxFit.contain,
                 width: duSetWidth(30),
                 height: duSetHeight(30),
@@ -62,7 +62,7 @@ centerSheet(
               SizedBox(height: 20),
               ElevatedButton(
                 style:ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.buttonStatueThree, // 设置按钮的背景色
+                  backgroundColor: AppColors.buttonStatueKXD, // 设置按钮的背景色
 
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(duSetWidth(50))), // 形状

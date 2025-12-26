@@ -84,11 +84,13 @@ class ClientDatum {
   String remark;
   String refuseReasonOne;
   String refuseReasonTwo;
+  String applicationNumber;
   DateTime? submitTime;
 
   ClientDatum({
     required this.refuseReasonOne,
     required this.refuseReasonTwo,
+    required this.applicationNumber,
     required this.id,
     required this.clientName,
     required this.city,
@@ -145,6 +147,7 @@ class ClientDatum {
     id: json["id"],
     refuseReasonOne: json["refuseReasonOne"]??"",
     refuseReasonTwo: json["refuseReasonTwo"]??"",
+    applicationNumber: json["applicationNumber"]??"",
     clientName: json["clientName"],
     city: json["city"],
     phone: json["phone"],
@@ -200,6 +203,7 @@ class ClientDatum {
     "id": id,
     "refuseReasonOne": refuseReasonOne,
     "refuseReasonTwo": refuseReasonTwo,
+    "applicationNumber": applicationNumber,
     "clientName": clientName,
     "city": city,
     "phone": phone,

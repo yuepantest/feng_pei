@@ -1,7 +1,7 @@
 name: feng_pei
 description: A new Flutter project.
 
-# The following line prevents the package from being accidentally published to
+# The following line prevents the package from being accidentally pflutter ublished to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
@@ -57,6 +57,8 @@ dependencies:
   #wheel_picker
   wheel_picker: ^0.2.1
   path_provider_android: ^2.0.30
+  #water-wave-progress
+  liquid_progress_indicator_v2: 0.5.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

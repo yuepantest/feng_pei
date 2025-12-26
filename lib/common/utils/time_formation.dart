@@ -5,3 +5,7 @@ String setTime(DateTime dateTime) {
   String formattedDateTime = formatter.format(dateTime);
   return formattedDateTime;
 }
+
+String formatNumber(num value) {
+  return NumberFormat('#,###').format(value);
+}

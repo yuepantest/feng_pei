@@ -11,6 +11,7 @@ import 'package:intl/intl.dart';
 import 'package:toast/toast.dart';
 
 import '../client/kxd_client.dart';
+import '../client/yxd_client.dart';
 
 class CategoryPage extends StatefulWidget {
   const CategoryPage({Key? key}) : super(key: key);
@@ -118,6 +119,14 @@ class _CategoryPageState extends State<CategoryPage> {
                               MaterialPageRoute(
                                 builder: (context) =>
                                     KXDClient(data: data),
+                              ),
+                            );
+                          } else if(data.type == 2){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    YXDClient(data: data),
                               ),
                             );
                           } else {

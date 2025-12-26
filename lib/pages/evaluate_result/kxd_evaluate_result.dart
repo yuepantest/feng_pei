@@ -53,7 +53,7 @@ class _KXDEvaluateResultState extends State<KXDEvaluateResult> {
               width: double.infinity,
               decoration: const BoxDecoration(
                   gradient: LinearGradient(
-                      colors: [AppColors.buttonStatueThree, AppColors.secondY],
+                      colors: [AppColors.buttonStatueKXD, AppColors.secondY],
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter)),
               child: Column(
@@ -143,7 +143,7 @@ class _KXDEvaluateResultState extends State<KXDEvaluateResult> {
                                     ),
                                   );
                                 },
-                                gbColor: AppColors.buttonStatueThree,
+                                gbColor: AppColors.buttonStatueKXD,
                                 fontSize: duSetFontSize(15),
                                 height: duSetHeight(38),
                                 title: "查看详情",
@@ -197,10 +197,10 @@ class _KXDEvaluateResultState extends State<KXDEvaluateResult> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Image.asset(
-                    "assets/images/money_icon_1.png",
+                    "assets/images/money-rmb-fill.png",
                     fit: BoxFit.contain,
-                    width: duSetWidth(30),
-                    height: duSetHeight(30),
+                    width: duSetWidth(35),
+                    height: duSetHeight(35),
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: duSetWidth(10)),

@@ -50,7 +50,7 @@ class _KXDClientState extends State<KXDClient> {
     }
     return Scaffold(
       appBar: transparentAppBar(
-        color: AppColors.buttonStatueThree,
+        color: AppColors.buttonStatueKXD,
         title: Padding(
             padding: EdgeInsets.only(right: duSetWidth(40)),
             child: const Text(

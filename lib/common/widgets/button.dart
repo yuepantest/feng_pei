@@ -55,11 +55,15 @@ Widget myButton(
           height: height,
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: gbColor, // 设置按钮的背景色
-              foregroundColor: fontColor, // 设置按钮的前景色（文本颜色）
+              backgroundColor: gbColor,
+              // 设置按钮的背景色
+              foregroundColor: fontColor,
+              // 设置按钮的前景色（文本颜色）
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(cornerRadius)), // 形状
-              shadowColor: Colors.transparent,     // 去掉阴影
+                  borderRadius: BorderRadius.circular(cornerRadius)),
+              // 形状
+              shadowColor: Colors.transparent,
+              // 去掉阴影
               elevation: 0,
               side: BorderSide(
                 // 设置边框
@@ -98,4 +102,32 @@ Widget myButton(
             ),
           ),
         );
+}
+
+Widget containerButton({required double width,
+  required double height,
+  required double cornerRadius,
+  required Color gbColor,
+  required String title,
+  required Color fontColor,
+  required double fontSize,}
+
+) {
+  return GestureDetector(
+    behavior: HitTestBehavior.opaque,
+    child: Container(
+      alignment: Alignment.center,
+      width: width,
+      height: height,
+      decoration: BoxDecoration(
+        color: gbColor,
+        borderRadius: BorderRadius.all(Radius.circular(cornerRadius)),
+      ),
+      child: Text(
+        title,
+        style: TextStyle(color: fontColor, fontSize: fontSize,fontWeight: FontWeight.bold),
+      ),
+    ),
+    onTap: () {},
+  );
 }

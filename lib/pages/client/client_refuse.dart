@@ -133,6 +133,9 @@ class _ClientRefusePageState extends State<ClientRefusePage> {
               child: myButton(
                   onPressed: () {
                     toastInfo(msg: '感谢你的申请！');
+                    // Future.delayed(const Duration(seconds: 2), () {
+                    //   Navigator.pop(context);
+                    // });
                   },
                   gbColor: AppColors.buttonStatueZero,
                   fontSize: duSetFontSize(16),

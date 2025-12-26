@@ -1,9 +1,13 @@
+import 'dart:ffi';
+
+import 'package:dio/dio.dart';
 import 'package:feng_pei/common/entity/entitys.dart';
 import 'package:feng_pei/common/utils/screen.dart';
 import 'package:feng_pei/common/values/colors.dart';
 import 'package:feng_pei/common/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
+import '../../common/api/apis.dart';
 import 'xxd_evaluate_result_second.dart';
 
 class XXDEvaluateResult extends StatefulWidget {
@@ -16,9 +20,29 @@ class XXDEvaluateResult extends StatefulWidget {
 }
 
 class _XXDEvaluateResultState extends State<XXDEvaluateResult> {
+  Data? calculateData;
+  String selectTime = "";
+  String selectValue = "";
+  String selectReason = "日常消费";
+
+  Future<void> getListData(ClientDatum data) async {
+    var formData = FormData.fromMap({
+      'clientId': data.id,
+    });
+    CalculateDataEntity res = await UserAPI.getCalculateDate(params: formData);
+    if (res.code == 1) {
+      setState(() {
+        calculateData = res.data;
+        selectTime = calculateData!.titleFive;
+        selectValue = calculateData!.contentFive;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var data = widget.data;
+    getListData(widget.data);
     return Scaffold(
       appBar: transparentAppBar(
         color: AppColors.primaryBackground,
@@ -207,7 +231,9 @@ class _XXDEvaluateResultState extends State<XXDEvaluateResult> {
                               ),
                               child: const Text("月利率（单利）"),
                             ),
-                            const Text("0.8%"),
+                            Text(calculateData == null
+                                ? ""
+                                : calculateData!.rate+"%"),
                           ],
                         )
                       ],
@@ -230,7 +256,9 @@ class _XXDEvaluateResultState extends State<XXDEvaluateResult> {
                           ),
                           child: Center(
                             child: Text(
-                              "借款一万日利息低至2.66元",
+                              "借款一万日利息低至" +
+                                  (calculateDataData(calculateData))+
+                                  "元",
                               style: TextStyle(
                                   color: AppColors.buttonStatueZero,
                                   fontSize: duSetFontSize(10)),
@@ -458,5 +486,16 @@ class _XXDEvaluateResultState extends State<XXDEvaluateResult> {
         ),
       ),
     );
+  }
+
+  String calculateDataData(Data? data) {
+    if(data==null){
+      return "";
+    }
+    double result = 0;
+    double rate = double.parse(data.rate);
+    result = 100 * rate / 30;
+    String formattedNumber = result.toStringAsFixed(2);
+    return formattedNumber.toString();
   }
 }

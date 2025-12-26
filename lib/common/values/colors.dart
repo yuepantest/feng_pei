@@ -52,8 +52,18 @@ class AppColors {
   static const Color buttonStatueThree = Color.fromARGB(255, 234, 60, 67);
   static const Color buttonStatueFour = Color.fromARGB(255, 131, 207, 217);
   static const Color buttonStatueFive = Color.fromARGB(255, 246, 237, 233);
+  static const Color buttonStatueKXD = Color.fromARGB(255,9,123,237);
   static const Color shapeJYDBannerBackgroundStart =  Color.fromARGB(
       238, 245, 229, 221);
   static const Color shapeJYDBannerBackgroundEnd =  Color.fromARGB(
       238, 231, 207, 188);
+  static const Color yxdBackgroundStart = Color.fromARGB(255, 240,151,85);
+  static const Color yxdBackgroundEnd = Color.fromARGB(255, 255,82,102);
+  static const Color yxdCycle = Color.fromARGB(255, 248,143,119);
+  static const Color yxdBlack = Color.fromARGB(255, 252,67,56);
+  static const Color yxdContent = Color.fromARGB(255,255,170,149);
+  static const Color yxdBelowButtonColor = Color.fromARGB(255,52,112,152);
+
+  static const Color smallTextYellow = Color.fromARGB(255,238,180,34);
+
 }

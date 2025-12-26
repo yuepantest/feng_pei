@@ -100,7 +100,9 @@ class _KXDEvaluateResultSecondState extends State<KXDEvaluateResultSecond> {
                         style: TextStyle(fontSize: duSetFontSize(50)),
                       ),
                       Padding(padding: EdgeInsets.only(bottom: duSetHeight(15),),child: Text(
-                        "月利率为1.2%，按单利计算",
+                        "月利率为"+(calculateData == null
+                            ? ""
+                            : calculateData!.rate)+"%，按单利计算",
                         style: TextStyle(fontSize: duSetFontSize(10),color: AppColors.thirdElementText),
                       ),),
                     ],
@@ -132,7 +134,7 @@ class _KXDEvaluateResultSecondState extends State<KXDEvaluateResultSecond> {
                               "分期期数",
                               style: TextStyle(fontSize: duSetFontSize(14)),
                             ),
-                            Spacer(),
+                            const Spacer(),
                             Text(
                               selectTime,
                               style: TextStyle(fontSize: duSetFontSize(14)),
@@ -209,7 +211,7 @@ class _KXDEvaluateResultSecondState extends State<KXDEvaluateResultSecond> {
                         "还款计划",
                         style: TextStyle(fontSize: duSetFontSize(14)),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Text(
                         selectValue,
                         style: TextStyle(fontSize: duSetFontSize(14)),
@@ -332,7 +334,7 @@ class _KXDEvaluateResultSecondState extends State<KXDEvaluateResultSecond> {
                     height: duSetHeight(39),
                     width: duSetWidth(300),
                     cornerRadius: duSetWidth(50),
-                    gbColor: AppColors.buttonStatueThree,
+                    gbColor: AppColors.buttonStatueKXD,
                     title: "下一步",
                     fontColor: AppColors.primaryBackground,
                     fontSize: duSetFontSize(16),

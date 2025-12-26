@@ -10,6 +10,7 @@ import 'package:intl/intl.dart';
 import 'package:toast/toast.dart';
 
 import '../evaluate_result/kxd_evaluate_result.dart';
+import '../evaluate_result/yxd_evaluate_result.dart';
 import '../webview/webview.dart';
 
 class BookmarksPage extends StatefulWidget {
@@ -110,7 +111,7 @@ class _BookmarksPageState extends State<BookmarksPage> {
                               onPressed: () {
                                 if (data.status == 0) {
                                   if (data.type == 0) {
-                                    //工薪贷
+                                    //快享贷
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
@@ -133,7 +134,7 @@ class _BookmarksPageState extends State<BookmarksPage> {
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) =>
-                                            WebViewPage(data: data),
+                                            YXDEvaluateResult(data: data),
                                       ),
                                     );
                                   }
