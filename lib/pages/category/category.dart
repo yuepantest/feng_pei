@@ -100,18 +100,10 @@ class _CategoryPageState extends State<CategoryPage> {
                             fontWeight: FontWeight.w600,
                             color: AppColors.thirdElement)),
                     const Spacer(),
-                    Padding(
-                      padding: EdgeInsets.only(right: duSetWidth(30)),
-                      child: Text(
-                        "办理状态：" + statusButton,
-                        style: TextStyle(
-                            fontSize: duSetFontSize(10),
-                            fontWeight: FontWeight.w600),
-                      ),
-                    ),
+
                     Container(
-                      margin: EdgeInsets.only(right: duSetWidth(12)),
-                      child: myButton(
+                      margin: EdgeInsets.only(right: duSetWidth(8)),
+                      child: containerButton(
                         onPressed: () {
                           if (data.type == 0) {
                             Navigator.push(
@@ -162,7 +154,7 @@ class _CategoryPageState extends State<CategoryPage> {
                         height: duSetHeight(28),
                         title: "查看详情",
                         fontColor: AppColors.primaryBackground,
-                        cornerRadius: duSetHeight(14),
+                        cornerRadius: duSetHeight(14), width: duSetWidth(80),
                       ),
                     ),
                   ],
@@ -177,11 +169,21 @@ class _CategoryPageState extends State<CategoryPage> {
                               fontFamily: "Montserrat",
                               fontSize: duSetFontSize(12),
                               color: AppColors.thirdElementText)),
-                      Text("          预授信：" + data.assessMoney.toString(),
+                      Text("            预授信：" + data.assessMoney.toString(),
                           style: TextStyle(
                               fontFamily: "Montserrat",
                               fontSize: duSetFontSize(12),
                               color: AppColors.thirdElementText)),
+                      const Spacer(),
+                      Padding(
+                        padding: EdgeInsets.only(right: duSetWidth(15)),
+                        child: Text(
+                          "状态：" + statusButton,
+                          style: TextStyle(
+                              fontSize: duSetFontSize(10),
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
                     ],
                   ),
                 ),

@@ -59,7 +59,7 @@ class AppColors {
       238, 231, 207, 188);
   static const Color yxdBackgroundStart = Color.fromARGB(255, 240,151,85);
   static const Color yxdBackgroundEnd = Color.fromARGB(255, 255,82,102);
-  static const Color yxdCycle = Color.fromARGB(255, 248,143,119);
+  static const Color yxdCycle = Color.fromARGB(255,249,131,127);
   static const Color yxdBlack = Color.fromARGB(255, 252,67,56);
   static const Color yxdContent = Color.fromARGB(255,255,170,149);
   static const Color yxdBelowButtonColor = Color.fromARGB(255,52,112,152);

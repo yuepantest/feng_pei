@@ -86,6 +86,7 @@ class ClientDatum {
   String refuseReasonTwo;
   String applicationNumber;
   DateTime? submitTime;
+  int sendMsg;
 
   ClientDatum({
     required this.refuseReasonOne,
@@ -141,6 +142,7 @@ class ClientDatum {
     required this.commuteTime,
     required this.remark,
     required this.submitTime,
+    required this.sendMsg,
   });
 
   factory ClientDatum.fromJson(Map<String, dynamic> json) => ClientDatum(
@@ -196,6 +198,7 @@ class ClientDatum {
     companyPhoneNumber: json["companyPhoneNumber"]??"",
     commuteTime: json["commuteTime"]??"",
     remark: json["remark"]??"",
+    sendMsg: json["sendMsg"],
     submitTime: json["submitTime"] == null ? null : DateTime.parse(json["submitTime"]),
   );
 
@@ -252,6 +255,7 @@ class ClientDatum {
     "companyPhoneNumber": companyPhoneNumber,
     "commuteTime": commuteTime,
     "remark": remark,
+    "sendMsg": sendMsg,
     "submitTime": submitTime?.toIso8601String(),
   };
 }

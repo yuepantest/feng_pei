@@ -36,4 +36,10 @@ class UserAPI {
     var response = await HttpUtil().post('/modifyRefuseClientData', params: params);
     return CalculateDataEntity.fromJson(response);
   }
+
+  /// sendMsg
+  static Future<BaseData> sendMsg({required FormData params}) async {
+    var response = await HttpUtil().post('/sendMsg', params: params);
+    return BaseData.fromJson(response);
+  }
 }

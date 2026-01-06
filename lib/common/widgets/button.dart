@@ -104,15 +104,16 @@ Widget myButton(
         );
 }
 
-Widget containerButton({required double width,
+Widget containerButton({
+  required double width,
   required double height,
   required double cornerRadius,
   required Color gbColor,
   required String title,
   required Color fontColor,
-  required double fontSize,}
-
-) {
+  required double fontSize,
+  required VoidCallback onPressed,
+}) {
   return GestureDetector(
     behavior: HitTestBehavior.opaque,
     child: Container(
@@ -125,9 +126,12 @@ Widget containerButton({required double width,
       ),
       child: Text(
         title,
-        style: TextStyle(color: fontColor, fontSize: fontSize,fontWeight: FontWeight.bold),
+        style: TextStyle(
+            color: fontColor, fontSize: fontSize, fontWeight: FontWeight.bold),
       ),
     ),
-    onTap: () {},
+    onTap: () {
+      onPressed.call();
+    },
   );
 }

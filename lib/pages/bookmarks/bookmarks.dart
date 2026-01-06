@@ -11,7 +11,6 @@ import 'package:toast/toast.dart';
 
 import '../evaluate_result/kxd_evaluate_result.dart';
 import '../evaluate_result/yxd_evaluate_result.dart';
-import '../webview/webview.dart';
 
 class BookmarksPage extends StatefulWidget {
   const BookmarksPage({Key? key}) : super(key: key);
@@ -36,6 +35,30 @@ class _BookmarksPageState extends State<BookmarksPage> {
     super.initState();
   }
 
+  _handleSendMsg(ClientDatum data) async {
+    var typeStr = "";
+    if (data.type == 0) {
+      typeStr = "【商企云信】"+data.clientName+"先生/女生：您的申请已通过初审，请联系工作人员继续办理，感谢您的信任！";
+    } else if (data.type == 1) {
+      typeStr = "【商企云信】"+data.clientName+"您好：您提交的申请系统已审核通过，详情请联系业务员！";
+    } else if (data.type == 2) {
+      typeStr = "【商企云信】尊敬的"+data.clientName+"客户：您申请的订单已经提交成功，感谢您的支持！";
+    }
+    var formData = FormData.fromMap({
+      'clientId': data.id,
+      'content': typeStr,
+      'phone': data.phone,
+    });
+    BaseData res = await UserAPI.sendMsg(params: formData);
+    if (res.code == 1) {
+      toastInfo(msg: '发送消息成功');
+      setState(() {
+        data.sendMsg=1;
+      });
+    } else {
+      toastInfo(msg: '发送消息失败');
+    }
+  }
   @override
   Widget build(BuildContext context) {
     ToastContext().init(context);
@@ -86,7 +109,35 @@ class _BookmarksPageState extends State<BookmarksPage> {
           }
           return GestureDetector(
               behavior: HitTestBehavior.opaque,
-              onTap: () {},
+              onTap: () {
+                if (data.status == 0) {
+                  if (data.type == 0) {
+                    //快享贷
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => KXDEvaluateResult(data: data),
+                      ),
+                    );
+                  } else if (data.type == 1) {
+                    //薪享贷
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => XXDEvaluateResult(data: data),
+                      ),
+                    );
+                  } else if (data.type == 2) {
+                    //优享贷
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => YXDEvaluateResult(data: data),
+                      ),
+                    );
+                  }
+                }
+              },
               child: Padding(
                 padding: EdgeInsets.only(
                     left: duSetWidth(15),
@@ -105,48 +156,26 @@ class _BookmarksPageState extends State<BookmarksPage> {
                                 fontWeight: FontWeight.w600,
                                 color: AppColors.thirdElement)),
                         const Spacer(),
-                        Container(
-                          margin: EdgeInsets.only(right: duSetWidth(12)),
-                          child: myButton(
-                              onPressed: () {
-                                if (data.status == 0) {
-                                  if (data.type == 0) {
-                                    //快享贷
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            KXDEvaluateResult(data: data),
-                                      ),
-                                    );
-                                  } else if (data.type == 1) {
-                                    //薪享贷
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            XXDEvaluateResult(data: data),
-                                      ),
-                                    );
-                                  } else if (data.type == 2) {
-                                    //优享贷
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            YXDEvaluateResult(data: data),
-                                      ),
-                                    );
-                                  }
-                                }
-                              },
-                              gbColor: buttonColor,
-                              fontSize: duSetFontSize(12),
-                              height: duSetHeight(28),
-                              title: statusButton,
-                              fontColor: AppColors.primaryBackground,
-                              cornerRadius: duSetHeight(14)),
-                        )
+                        if (data.status == 0 && data.sendMsg==0)
+                          Container(
+                            margin: EdgeInsets.only(right: duSetWidth(6)),
+                            child: containerButton(
+                                onPressed: () {
+                                  dialogSheet(
+                                      context: context,
+                                      onCancel: () {},
+                                      onConfirm: () {
+                                        _handleSendMsg(data);
+                                      });
+                                },
+                                gbColor: buttonColor,
+                                fontSize: duSetFontSize(12),
+                                height: duSetHeight(28),
+                                title: "发送短信",
+                                fontColor: AppColors.primaryBackground,
+                                cornerRadius: duSetHeight(14),
+                                width: duSetWidth(80)),
+                          ),
                       ],
                     ),
                     Padding(
@@ -169,6 +198,16 @@ class _BookmarksPageState extends State<BookmarksPage> {
                                   //fontFamily: "Montserrat",
                                   fontSize: duSetFontSize(12),
                                   color: AppColors.thirdElementText),
+                            ),
+                          ),
+                          const Spacer(),
+                          Padding(
+                            padding: EdgeInsets.only(right: duSetWidth(15)),
+                            child: Text(
+                              "状态：" + statusButton,
+                              style: TextStyle(
+                                  fontSize: duSetFontSize(10),
+                                  fontWeight: FontWeight.w600),
                             ),
                           ),
                         ],
@@ -216,3 +255,5 @@ class _BookmarksPageState extends State<BookmarksPage> {
     );
   }
 }
+
+
