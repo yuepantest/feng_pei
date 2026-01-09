@@ -20,8 +20,9 @@ class _WebViewPageState extends State<WebViewPage> {
     var id = widget.data.id;
     var clientName = widget.data.clientName;
     var assessMoney = widget.data.assessMoney;
+    var identityCard = widget.data.identityCard;
     String _detailUrl =
-        'http://47.109.33.172:8082/#/FormThree?id=${id}&clientName=${clientName}&num=${assessMoney}';
+        'http://47.109.33.172:8082/#/FormThree?clientId=${id}&clientName=${clientName}&assessMoney=${assessMoney}&identityCard=${identityCard}';
     _controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setNavigationDelegate(
