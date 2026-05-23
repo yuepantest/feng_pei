@@ -7,6 +7,7 @@ import 'package:feng_pei/common/widgets/widgets.dart';
 import 'package:feng_pei/pages/evaluate_result/xxd_evaluate_result.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:toast/toast.dart';
 
 import '../evaluate_result/kxd_evaluate_result.dart';
@@ -38,11 +39,12 @@ class _BookmarksPageState extends State<BookmarksPage> {
   _handleSendMsg(ClientDatum data) async {
     var typeStr = "";
     if (data.type == 0) {
-      typeStr = "【商企云信】"+data.clientName+"先生/女生：您的申请已通过初审，请联系工作人员继续办理，感谢您的信任！";
+      typeStr =
+          "【商企云信】" + data.clientName + "先生/女生：您的申请已通过初审，请联系工作人员继续办理，感谢您的信任！";
     } else if (data.type == 1) {
-      typeStr = "【商企云信】"+data.clientName+"您好：您提交的申请系统已审核通过，详情请联系业务员！";
+      typeStr = "【商企云信】" + data.clientName + "您好：您提交的申请系统已审核通过，详情请联系业务员！";
     } else if (data.type == 2) {
-      typeStr = "【商企云信】尊敬的"+data.clientName+"客户：您申请的订单已经提交成功，感谢您的支持！";
+      typeStr = "【商企云信】尊敬的" + data.clientName + "客户：您申请的订单已经提交成功，感谢您的支持！";
     }
     var formData = FormData.fromMap({
       'clientId': data.id,
@@ -53,12 +55,13 @@ class _BookmarksPageState extends State<BookmarksPage> {
     if (res.code == 1) {
       toastInfo(msg: '发送消息成功');
       setState(() {
-        data.sendMsg=1;
+        data.sendMsg = 1;
       });
     } else {
       toastInfo(msg: '发送消息失败');
     }
   }
+
   @override
   Widget build(BuildContext context) {
     ToastContext().init(context);
@@ -149,14 +152,37 @@ class _BookmarksPageState extends State<BookmarksPage> {
                   children: [
                     Row(
                       children: [
-                        Text(data.clientName,
-                            style: TextStyle(
-                                fontSize: duSetFontSize(20),
+                        SizedBox(
+                          width: 120, // 设置容器的固定宽度
+                          child: Text(
+                            data.clientName,
+                            maxLines: 1, // 只显示一行文本
+                            overflow: TextOverflow.ellipsis, // 超出部分显示省略号
+                            style: const TextStyle(
+                                fontSize: 20,
                                 fontFamily: "Montserrat",
                                 fontWeight: FontWeight.w600,
-                                color: AppColors.thirdElement)),
+                                color: AppColors.thirdElement),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: duSetWidth(12)),
+                          child: Text(
+                            "办理状态：" ,
+                            style: TextStyle(
+                                fontSize: duSetFontSize(10),
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                        Text(
+                          statusButton,
+                          style: TextStyle(
+                              color: buttonColor,
+                              fontSize: duSetFontSize(10),
+                              fontWeight: FontWeight.w600),
+                        ),
                         const Spacer(),
-                        if (data.status == 0 && data.sendMsg==0)
+                        if (data.status == 0 && data.sendMsg == 0)
                           Container(
                             margin: EdgeInsets.only(right: duSetWidth(6)),
                             child: containerButton(
@@ -168,11 +194,26 @@ class _BookmarksPageState extends State<BookmarksPage> {
                                         _handleSendMsg(data);
                                       });
                                 },
-                                gbColor: buttonColor,
+                                gbColor: AppColors.buttonStatueZero,
                                 fontSize: duSetFontSize(12),
                                 height: duSetHeight(28),
-                                title: "发送短信",
+                                title: "通知客户",
                                 fontColor: AppColors.primaryBackground,
+                                cornerRadius: duSetHeight(14),
+                                width: duSetWidth(80)),
+                          ),
+                        if (data.status == 0 && data.sendMsg == 1)
+                          Container(
+                            margin: EdgeInsets.only(right: duSetWidth(6)),
+                            child: containerButton(
+                                onPressed: () {
+
+                                },
+                                gbColor: AppColors.secondX,
+                                fontSize: duSetFontSize(12),
+                                height: duSetHeight(28),
+                                title: "已通知",
+                                fontColor: AppColors.thirdElementText,
                                 cornerRadius: duSetHeight(14),
                                 width: duSetWidth(80)),
                           ),
@@ -191,7 +232,7 @@ class _BookmarksPageState extends State<BookmarksPage> {
                                 color: AppColors.thirdElementText),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(left: duSetWidth(59)),
+                            padding: EdgeInsets.only(left: duSetWidth(50)),
                             child: Text(
                               "申请金额：" + data.loanAmount.toString(),
                               style: TextStyle(
@@ -201,15 +242,6 @@ class _BookmarksPageState extends State<BookmarksPage> {
                             ),
                           ),
                           const Spacer(),
-                          Padding(
-                            padding: EdgeInsets.only(right: duSetWidth(15)),
-                            child: Text(
-                              "状态：" + statusButton,
-                              style: TextStyle(
-                                  fontSize: duSetFontSize(10),
-                                  fontWeight: FontWeight.w600),
-                            ),
-                          ),
                         ],
                       ),
                     ),
@@ -225,9 +257,8 @@ class _BookmarksPageState extends State<BookmarksPage> {
                                 fontSize: duSetFontSize(12),
                                 color: AppColors.thirdElementText),
                           ),
-                          const Spacer(),
                           Padding(
-                            padding: EdgeInsets.only(right: duSetWidth(53)),
+                            padding: EdgeInsets.only(left: duSetWidth(47)),
                             child: Text(
                               "申请时间：" + formattedDateTime,
                               style: TextStyle(
@@ -255,5 +286,3 @@ class _BookmarksPageState extends State<BookmarksPage> {
     );
   }
 }
-
-

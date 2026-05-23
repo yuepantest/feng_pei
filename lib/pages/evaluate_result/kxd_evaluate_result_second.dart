@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:feng_pei/common/entity/entitys.dart';
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 import '../../common/api/apis.dart';
 import '../../common/utils/utils.dart';
 import '../../common/values/values.dart';
@@ -86,7 +87,8 @@ class _KXDEvaluateResultSecondState extends State<KXDEvaluateResultSecond> {
                     borderRadius:
                         BorderRadius.all(Radius.circular(duSetWidth(10)))),
                 child: Padding(
-                  padding: EdgeInsets.only(left: duSetWidth(13),top: duSetHeight(15)),
+                  padding: EdgeInsets.only(
+                      left: duSetWidth(13), top: duSetHeight(15)),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,15 +98,24 @@ class _KXDEvaluateResultSecondState extends State<KXDEvaluateResultSecond> {
                         style: TextStyle(fontSize: duSetFontSize(14)),
                       ),
                       Text(
-                      "¥"+data.assessMoney.toString(),
+                        "¥" + data.assessMoney.toString(),
                         style: TextStyle(fontSize: duSetFontSize(50)),
                       ),
-                      Padding(padding: EdgeInsets.only(bottom: duSetHeight(15),),child: Text(
-                        "月利率为"+(calculateData == null
-                            ? ""
-                            : calculateData!.rate)+"%，按单利计算",
-                        style: TextStyle(fontSize: duSetFontSize(10),color: AppColors.thirdElementText),
-                      ),),
+                      Padding(
+                        padding: EdgeInsets.only(
+                          bottom: duSetHeight(15),
+                        ),
+                        child: Text(
+                          "月利率为" +
+                              (calculateData == null
+                                  ? ""
+                                  : calculateData!.rate) +
+                              "%，按单利计算",
+                          style: TextStyle(
+                              fontSize: duSetFontSize(10),
+                              color: AppColors.thirdElementText),
+                        ),
+                      ),
                     ],
                   ),
                 ),

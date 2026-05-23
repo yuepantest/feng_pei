@@ -69,152 +69,212 @@ class _CategoryPageState extends State<CategoryPage> {
           if (data.submitTime != null) {
             formattedDateTime = formatter.format(data.submitTime!);
           }
+          var buttonColor = AppColors.buttonStatueZero;
           String statusButton = "";
           if (data.status == 0) {
             statusButton = "补交资料";
+            buttonColor = AppColors.buttonStatueZero;
           } else if (data.status == 1) {
             statusButton = "等待审核";
+            buttonColor = AppColors.buttonStatueOne;
           } else if (data.status == 2) {
             statusButton = "审核通过";
+            buttonColor = AppColors.buttonStatueTwo;
           } else if (data.status == 3) {
+            buttonColor = AppColors.buttonStatueThree;
             statusButton = "审核拒绝";
           } else if (data.status == 4) {
+            buttonColor = AppColors.buttonStatueFour;
             statusButton = "补充资料";
           }
-          return Padding(
-            padding: EdgeInsets.only(
-                left: duSetWidth(15),
-                top: duSetHeight(15),
-                right: duSetWidth(15),
-                bottom: duSetHeight(0)),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(data.clientName,
-                        style: TextStyle(
-                            fontSize: duSetFontSize(20),
-                            fontFamily: "Montserrat",
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.thirdElement)),
-                    const Spacer(),
-
-                    Container(
-                      margin: EdgeInsets.only(right: duSetWidth(8)),
-                      child: containerButton(
-                        onPressed: () {
-                          if (data.type == 0) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    KXDClient(data: data),
-                              ),
-                            );
-                          } else if(data.type == 2){
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    YXDClient(data: data),
-                              ),
-                            );
-                          } else {
-                            if (data.status == 2) {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      ClientPassPage(data: data),
-                                ),
-                              );
-                            } else if (data.status == 3) {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      ClientRefusePage(data: data),
-                                ),
-                              );
-                            } else if (data.status == 1) {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      ClientWaitCheckPage(data: data),
-                                ),
-                              );
-                            }
-                          }
-                        },
-                        gbColor: AppColors.buttonStatueOne,
-                        fontSize: duSetFontSize(12),
-                        height: duSetHeight(28),
-                        title: "查看详情",
-                        fontColor: AppColors.primaryBackground,
-                        cornerRadius: duSetHeight(14), width: duSetWidth(80),
-                      ),
+          return GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () {
+              if (data.type == 0) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => KXDClient(data: data),
+                  ),
+                );
+              } else if (data.type == 2) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => YXDClient(data: data),
+                  ),
+                );
+              } else {
+                if (data.status == 2) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ClientPassPage(data: data),
                     ),
-                  ],
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: duSetHeight(5)),
-                  child: Row(
+                  );
+                } else if (data.status == 3) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ClientRefusePage(data: data),
+                    ),
+                  );
+                } else if (data.status == 1) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ClientWaitCheckPage(data: data),
+                    ),
+                  );
+                }
+              }
+            },
+            child: Padding(
+              padding: EdgeInsets.only(
+                  left: duSetWidth(15),
+                  top: duSetHeight(15),
+                  right: duSetWidth(15),
+                  bottom: duSetHeight(0)),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text("产品：" + typeStr,
-                          style: TextStyle(
-                              fontFamily: "Montserrat",
-                              fontSize: duSetFontSize(12),
-                              color: AppColors.thirdElementText)),
-                      Text("            预授信：" + data.assessMoney.toString(),
-                          style: TextStyle(
-                              fontFamily: "Montserrat",
-                              fontSize: duSetFontSize(12),
-                              color: AppColors.thirdElementText)),
-                      const Spacer(),
-                      Padding(
-                        padding: EdgeInsets.only(right: duSetWidth(15)),
+                      SizedBox(
+                        width: 120, // 设置容器的固定宽度
                         child: Text(
-                          "状态：" + statusButton,
+                          data.clientName,
+                          maxLines: 1, // 只显示一行文本
+                          overflow: TextOverflow.ellipsis, // 超出部分显示省略号
+                          style: const TextStyle(
+                              fontSize: 20,
+                              fontFamily: "Montserrat",
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.thirdElement),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: duSetWidth(3)),
+                        child: Text(
+                          "办理状态：",
                           style: TextStyle(
                               fontSize: duSetFontSize(10),
                               fontWeight: FontWeight.w600),
                         ),
                       ),
+                      Text(
+                        statusButton,
+                        style: TextStyle(
+                            color: buttonColor,
+                            fontSize: duSetFontSize(10),
+                            fontWeight: FontWeight.w600),
+                      ),
+                      const Spacer(),
+                      Container(
+                        margin: EdgeInsets.only(right: duSetWidth(8)),
+                        child: containerButton(
+                          onPressed: () {
+                            if (data.type == 0) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => KXDClient(data: data),
+                                ),
+                              );
+                            } else if (data.type == 2) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => YXDClient(data: data),
+                                ),
+                              );
+                            } else {
+                              if (data.status == 2) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        ClientPassPage(data: data),
+                                  ),
+                                );
+                              } else if (data.status == 3) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        ClientRefusePage(data: data),
+                                  ),
+                                );
+                              } else if (data.status == 1) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        ClientWaitCheckPage(data: data),
+                                  ),
+                                );
+                              }
+                            }
+                          },
+                          gbColor: AppColors.buttonStatueOne,
+                          fontSize: duSetFontSize(12),
+                          height: duSetHeight(28),
+                          title: "查看详情",
+                          fontColor: AppColors.primaryBackground,
+                          cornerRadius: duSetHeight(14),
+                          width: duSetWidth(80),
+                        ),
+                      ),
                     ],
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                      top: duSetHeight(5), bottom: duSetHeight(10)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text("订单ID：" + data.id.toString(),
-                          style: TextStyle(
-                              fontFamily: "Montserrat",
-                              fontSize: duSetFontSize(12),
-                              color: AppColors.thirdElementText)),
-                      Text("          受理时间：" + formattedDateTime,
-                          style: TextStyle(
-                              fontFamily: "Montserrat",
-                              fontSize: duSetFontSize(12),
-                              color: AppColors.thirdElementText)),
-                    ],
+                  Padding(
+                    padding: EdgeInsets.only(top: duSetHeight(5)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text("产品：" + typeStr,
+                            style: TextStyle(
+                                fontFamily: "Montserrat",
+                                fontSize: duSetFontSize(12),
+                                color: AppColors.thirdElementText)),
+                        Text("            预授信：" + data.assessMoney.toString(),
+                            style: TextStyle(
+                                fontFamily: "Montserrat",
+                                fontSize: duSetFontSize(12),
+                                color: AppColors.thirdElementText)),
+                      ],
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: duSetHeight(0)),
-                  child: const Divider(
-                    height: 1.0, // 分割线的高度
-                    thickness: 1.0, // 分割线的厚度
-                    color: AppColors.secondX, // 分割线的颜色
+                  Padding(
+                    padding: EdgeInsets.only(
+                        top: duSetHeight(5), bottom: duSetHeight(10)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text("订单ID：" + data.id.toString(),
+                            style: TextStyle(
+                                fontFamily: "Montserrat",
+                                fontSize: duSetFontSize(12),
+                                color: AppColors.thirdElementText)),
+                        Text("          受理时间：" + formattedDateTime,
+                            style: TextStyle(
+                                fontFamily: "Montserrat",
+                                fontSize: duSetFontSize(12),
+                                color: AppColors.thirdElementText)),
+                      ],
+                    ),
                   ),
-                )
-              ],
+                  Padding(
+                    padding: EdgeInsets.only(top: duSetHeight(0)),
+                    child: const Divider(
+                      height: 1.0, // 分割线的高度
+                      thickness: 1.0, // 分割线的厚度
+                      color: AppColors.secondX, // 分割线的颜色
+                    ),
+                  )
+                ],
+              ),
             ),
           );
         },

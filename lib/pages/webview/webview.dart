@@ -1,10 +1,11 @@
-import 'package:feng_pei/common/entity/entitys.dart';
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+
+import '../../common/entity/entitys.dart';
 
 class WebViewPage extends StatefulWidget {
   final ClientDatum data;
-
   const WebViewPage({Key? key, required this.data}) : super(key: key);
 
   @override
@@ -17,6 +18,7 @@ class _WebViewPageState extends State<WebViewPage> {
   @override
   void initState() {
     super.initState();
+    requestMultiplePermissions();
     var id = widget.data.id;
     var clientName = widget.data.clientName;
     var assessMoney = widget.data.assessMoney;
@@ -31,13 +33,15 @@ class _WebViewPageState extends State<WebViewPage> {
             // Update loading bar.
           },
           onPageStarted: (String url) {},
-          onPageFinished: (String url) {},
+          onPageFinished: (String url) {
+
+          },
           onHttpError: (HttpResponseError error) {},
           onWebResourceError: (WebResourceError error) {},
         ),
       )
-      ..addJavaScriptChannel('Logging', onMessageReceived: (javaScriptMessage) {
-        print(javaScriptMessage.message);
+      ..addJavaScriptChannel('Logging', onMessageReceived: (JavaScriptMessage message) {
+        print('来自网页的消息: ${message.message}');
       })
       ..loadRequest(Uri.parse(_detailUrl));
   }
@@ -48,11 +52,11 @@ class _WebViewPageState extends State<WebViewPage> {
       onWillPop: () async {
         var canBack = await _controller.canGoBack();
         if (canBack) {
-          // 当网页还有历史记录时，返回webview上一页
+          // 当网页还有历史记录时，返回到上一页
           await _controller.goBack();
           return false;
         } else {
-          // 返回原生页面上一页
+          // 如果没有历史记录，返回到原生页面
           return true;
         }
       },
@@ -60,7 +64,23 @@ class _WebViewPageState extends State<WebViewPage> {
     );
   }
 
-  void _sendMessageToWeb(String message) {
-    _controller.runJavaScript("window.flutter_injected_code('$message');");
+  Future<void> requestMultiplePermissions() async {
+    // 请求多个权限
+    Map<Permission, PermissionStatus> statuses = await [
+      Permission.camera,
+      Permission.storage,
+    ].request();
+    // 检查相机权限
+    if (statuses[Permission.camera]!.isGranted) {
+      print("Camera permission granted");
+    } else {
+      openAppSettings(); // 跳转到应用设置页面
+    }
+    // 检查存储权限
+    if (statuses[Permission.storage]!.isGranted) {
+      print("Storage permission granted");
+    } else {
+      openAppSettings(); // 跳转到应用设置页面
+    }
   }
 }

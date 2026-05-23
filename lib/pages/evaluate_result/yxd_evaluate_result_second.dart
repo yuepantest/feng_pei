@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:feng_pei/common/entity/entitys.dart';
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 import '../../common/api/apis.dart';
 import '../../common/utils/utils.dart';
 import '../../common/values/values.dart';
@@ -257,7 +258,6 @@ class _YXDEvaluateResultSecondState extends State<YXDEvaluateResultSecond> {
                             title: "联系电话",
                             content: data.phone,
                             isShowTop: true),
-
                         itemView(
                             title: "申请编号",
                             content: data.applicationNumber + "",
@@ -304,7 +304,8 @@ class _YXDEvaluateResultSecondState extends State<YXDEvaluateResultSecond> {
                         itemViewBottom(
                             title: "年化利率",
                             content: calculateYearRate(calculateData),
-                            bottomText: "*折算成万元日利息为"+calculateDayRate(calculateData),
+                            bottomText:
+                                "*折算成万元日利息为" + calculateDayRate(calculateData),
                             isShowTop: true),
                         itemView(
                             title: "月还款",
@@ -320,9 +321,7 @@ class _YXDEvaluateResultSecondState extends State<YXDEvaluateResultSecond> {
                                 : calculateData!.bankIdContent,
                             isShowTop: true),
                         itemView(
-                            title: "还款日",
-                            content: "每月15日",
-                            isShowTop: true),
+                            title: "还款日", content: "每月15日", isShowTop: true),
                       ],
                     ),
                   ),
@@ -576,12 +575,13 @@ class _YXDEvaluateResultSecondState extends State<YXDEvaluateResultSecond> {
       return "";
     }
   }
-  calculateDayRate(Data? calculateDat){
+
+  calculateDayRate(Data? calculateDat) {
     if (calculateDat != null && calculateDat.rate != "") {
-      return  ((100* double.parse(calculateDat.rate))/30).toStringAsFixed(2);
+      return ((100 * double.parse(calculateDat.rate)) / 30).toStringAsFixed(2);
     } else {
       return "";
     }
-
   }
+
 }

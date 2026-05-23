@@ -50,6 +50,8 @@ dependencies:
   crypto: ^3.0.2
   # webview
   webview_flutter: ^4.1.0
+  flutter_inappwebview: ^6.0.0
+  file_picker: ^8.0.7 # 用于选择文件
   # refresh
   easy_refresh: ^3.3.1
   # 时间格式
@@ -59,6 +61,7 @@ dependencies:
   path_provider_android: ^2.0.30
   #water-wave-progress
   liquid_progress_indicator_v2: 0.5.0
+  permission_handler: ^11.3.1  # 版本号可以根据实际情况选择
 dev_dependencies:
   flutter_test:
     sdk: flutter
