@@ -18,7 +18,7 @@ class _WebViewPageState extends State<WebViewPage> {
   @override
   void initState() {
     super.initState();
-    requestMultiplePermissions();
+    //requestMultiplePermissions();
     var id = widget.data.id;
     var clientName = widget.data.clientName;
     var assessMoney = widget.data.assessMoney;

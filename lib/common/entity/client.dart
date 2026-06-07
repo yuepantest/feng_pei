@@ -83,14 +83,12 @@ class ClientDatum {
   String commuteTime;
   String remark;
   String refuseReasonOne;
-  String refuseReasonTwo;
   String applicationNumber;
   DateTime? submitTime;
   int sendMsg;
 
   ClientDatum({
     required this.refuseReasonOne,
-    required this.refuseReasonTwo,
     required this.applicationNumber,
     required this.id,
     required this.clientName,
@@ -148,7 +146,6 @@ class ClientDatum {
   factory ClientDatum.fromJson(Map<String, dynamic> json) => ClientDatum(
     id: json["id"],
     refuseReasonOne: json["refuseReasonOne"]??"",
-    refuseReasonTwo: json["refuseReasonTwo"]??"",
     applicationNumber: json["applicationNumber"]??"",
     clientName: json["clientName"],
     city: json["city"],
@@ -205,7 +202,6 @@ class ClientDatum {
   Map<String, dynamic> toJson() => {
     "id": id,
     "refuseReasonOne": refuseReasonOne,
-    "refuseReasonTwo": refuseReasonTwo,
     "applicationNumber": applicationNumber,
     "clientName": clientName,
     "city": city,

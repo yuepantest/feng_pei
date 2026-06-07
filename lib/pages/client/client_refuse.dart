@@ -103,7 +103,7 @@ class _ClientRefusePageState extends State<ClientRefusePage> {
                 right: duSetWidth(25),
               ),
               child: Text(
-                widget.data.refuseReasonTwo,
+                "",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: AppColors.fourElement,

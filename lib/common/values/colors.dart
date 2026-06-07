@@ -63,7 +63,9 @@ class AppColors {
   static const Color yxdBlack = Color.fromARGB(255, 252,67,56);
   static const Color yxdContent = Color.fromARGB(255,255,170,149);
   static const Color yxdBelowButtonColor = Color.fromARGB(255,52,112,152);
-
+  static const Color xxdClientResultBackground = Color.fromARGB(
+      255, 225, 195, 156);
+  static const Color xxdClientResultText = Color.fromARGB(255, 18, 150, 255);
   static const Color smallTextYellow = Color.fromARGB(255,238,180,34);
 
 }
