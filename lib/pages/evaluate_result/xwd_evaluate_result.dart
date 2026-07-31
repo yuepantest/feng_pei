@@ -85,7 +85,7 @@ class _XWDEvaluateResultState extends State<XWDEvaluateResult> {
                         color: AppColors.thirdElement),
                     children: [
                       TextSpan(
-                        text: data.clientName,
+                        text: " "+data.clientName,
                         style: GoogleFonts.ibmPlexSans(
                           fontSize: duSetFontSize(16),
                           color: AppColors.primaryText,
@@ -93,10 +93,10 @@ class _XWDEvaluateResultState extends State<XWDEvaluateResult> {
                       ),
                       // 黑色  您的申请已收到
                       TextSpan(
-                        text: " 您的申请已收到，已为您测算并已获得个人信用借款，预计额度为" +
+                        text: "，已为您测算并已获得个人信用借款，预计额度为" +
                             data.assessMoney.toString() +
                             "，年化利率（单利）5.88%.请三个工作日内准备好材料，联系客户经理进件。最终结果以实际审批为准。",
-                        style: GoogleFonts.zenMaruGothic(
+                        style: GoogleFonts.ibmPlexSans(
                             fontSize: duSetFontSize(14),
                             color: AppColors.thirdElementText),
 

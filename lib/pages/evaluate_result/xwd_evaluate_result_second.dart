@@ -283,8 +283,8 @@ class _XWDEvaluateResultSecondState extends State<XwDEvaluateResultSecond> {
                                 widget.data.clientName +
                                 "\n贷款金额：" +
                                 money.toInt().toString() +
-                                "\n借款期限：" +
-                                "\n还款方式：" +
+                                "\n借款方案：" +repayType.replaceAll("\n", "")+
+                                "\n年化利率：" +calculateYearRate(calculateData)+
                                 "\n月还款：" +
                                 (calculateData == null
                                     ? ""
