@@ -62,6 +62,7 @@ dependencies:
   #water-wave-progress
   liquid_progress_indicator_v2: 0.5.0
   permission_handler: ^11.3.1  # 版本号可以根据实际情况选择
+  google_fonts: ^8.1.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

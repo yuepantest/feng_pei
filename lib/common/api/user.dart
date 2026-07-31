@@ -6,6 +6,7 @@ import 'package:feng_pei/common/utils/utils.dart';
 
 /// 用户
 class UserAPI {
+  static const String LOGIN_KEY = "/2026-07-11";
   /// 登录
   static Future<LoginEntity> login({required FormData params}) async {
     var response = await HttpUtil().post('/userLogin', params: params);
@@ -14,13 +15,13 @@ class UserAPI {
 
   /// getList
   static Future<ClientEntity> getList({required FormData params}) async {
-    var response = await HttpUtil().post('/getAllClientList', params: params);
+    var response = await HttpUtil().post(LOGIN_KEY+'/getAllClientList', params: params);
     return ClientEntity.fromJson(response);
   }
 
   /// getSpecialList
   static Future<ClientEntity> getSpecialList({required FormData params}) async {
-    var response = await HttpUtil().post('/getSpacialClientList', params: params);
+    var response = await HttpUtil().post(LOGIN_KEY+'/getSpacialClientList', params: params);
     return ClientEntity.fromJson(response);
   }
 
@@ -40,6 +41,11 @@ class UserAPI {
   /// sendMsg
   static Future<BaseData> sendMsg({required FormData params}) async {
     var response = await HttpUtil().post('/sendMsg', params: params);
+    return BaseData.fromJson(response);
+  }
+  /// sendMsgMH
+  static Future<BaseData> sendMsgMH({required FormData params}) async {
+    var response = await HttpUtil().post('/sendMsgMH', params: params);
     return BaseData.fromJson(response);
   }
 }

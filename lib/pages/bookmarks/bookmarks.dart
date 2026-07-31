@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:toast/toast.dart';
 import '../evaluate_result/kxd_evaluate_result.dart';
+import '../evaluate_result/xwd_evaluate_result.dart';
 import '../evaluate_result/xxd_evaluate_result.dart';
 import '../evaluate_result/yxd_evaluate_result.dart';
 
@@ -37,20 +38,36 @@ class _BookmarksPageState extends State<BookmarksPage> {
   _handleSendMsg(ClientDatum data) async {
     var typeStr = "";
     if (data.type == 0) {
-      typeStr =
-          "【商企云信】" + data.clientName + "先生/女生：您的申请已通过初审，请联系工作人员继续办理，感谢您的信任！";
+      typeStr = "【商企云信】尊敬的" +
+          data.clientName +
+          "客户：您申请的订单已经提交成功，系统审核额度" +
+          data.assessMoney.toString() +
+          "，感谢您的支持！";
     } else if (data.type == 1) {
-      typeStr = "【商企云信】" + data.clientName + "您好：您提交的申请系统已审核通过，详情请联系业务员！";
+      typeStr = "【深信服】" + data.clientName + "您好：您提交的申请系统已审核通过，详情请联系业务员！";
     } else if (data.type == 2) {
-      typeStr = "【商企云信】尊敬的" + data.clientName + "客户：您申请的订单已经提交成功，感谢您的支持！";
+      typeStr =
+          "【深信服】" + data.clientName + "先生/女生：您的申请已通过初审，请联系工作人员继续办理，感谢您的信任！";
+    } else if (data.type == 3) {
+      typeStr = "【商企云信】" +
+          data.clientName +
+          "您好：您提交的申请系统测算成功，额度" +
+          data.assessMoney.toString() +
+          "，详细请联系业务员！";
     }
     var formData = FormData.fromMap({
       'clientId': data.id,
       'content': typeStr,
       'phone': data.phone,
+      'type': data.type,
     });
-    BaseData res = await UserAPI.sendMsg(params: formData);
-    if (res.code == 1) {
+    BaseData? res;
+    if (data.type == 0 || data.type == 3) {
+      res = await UserAPI.sendMsg(params: formData);
+    } else if (data.type == 1 || data.type == 2) {
+      res = await UserAPI.sendMsgMH(params: formData);
+    }
+    if (res != null && res.code == 1) {
       toastInfo(msg: '发送消息成功');
       setState(() {
         data.sendMsg = 1;
@@ -87,6 +104,8 @@ class _BookmarksPageState extends State<BookmarksPage> {
             typeStr = "薪享贷";
           } else if (data.type == 2) {
             typeStr = "优享贷";
+          } else if (data.type == 3) {
+            typeStr = "小微快贷";
           }
           DateFormat formatter = DateFormat('yyyy-MM-dd HH:mm');
           String formattedDateTime = formatter.format(data.applyTime);
@@ -136,6 +155,14 @@ class _BookmarksPageState extends State<BookmarksPage> {
                         builder: (context) => YXDEvaluateResult(data: data),
                       ),
                     );
+                  } else if (data.type == 3) {
+                    //小薇快贷
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => XWDEvaluateResult(data: data),
+                      ),
+                    );
                   }
                 }
               },
@@ -166,7 +193,7 @@ class _BookmarksPageState extends State<BookmarksPage> {
                         Padding(
                           padding: EdgeInsets.only(left: duSetWidth(12)),
                           child: Text(
-                            "办理状态：" ,
+                            "办理状态：",
                             style: TextStyle(
                                 fontSize: duSetFontSize(10),
                                 fontWeight: FontWeight.w600),
@@ -204,9 +231,7 @@ class _BookmarksPageState extends State<BookmarksPage> {
                           Container(
                             margin: EdgeInsets.only(right: duSetWidth(6)),
                             child: containerButton(
-                                onPressed: () {
-
-                                },
+                                onPressed: () {},
                                 gbColor: AppColors.secondX,
                                 fontSize: duSetFontSize(12),
                                 height: duSetHeight(28),

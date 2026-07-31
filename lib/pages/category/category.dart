@@ -61,6 +61,8 @@ class _CategoryPageState extends State<CategoryPage> {
             typeStr = "薪享贷";
           } else if (data.type == 2) {
             typeStr = "优享贷";
+          } else if (data.type == 3) {
+            typeStr = "小微快贷";
           }
           DateFormat formatter = DateFormat('yyyy-MM-dd HH:mm');
           String formattedDateTime = "";

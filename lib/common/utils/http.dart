@@ -17,6 +17,7 @@ class HttpUtil {
     BaseOptions options = BaseOptions(
       // 请求基地址,可以包含子路径
       baseUrl: "http://47.109.33.172:8081/",
+      //baseUrl: "http://localhost:8081/",
       // baseUrl: storage.read(key: STORAGE_KEY_APIURL) ?? SERVICE_API_BASEURL,
       //连接服务器超时时间，单位是毫秒.
       connectTimeout: 10000,

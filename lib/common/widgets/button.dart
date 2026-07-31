@@ -68,7 +68,7 @@ Widget myButton(
               side: BorderSide(
                 // 设置边框
                 color: sideColor,
-                width: 1,
+                width: 1.00,
               ),
             ),
             onPressed: onPressed,
@@ -90,7 +90,7 @@ Widget myButton(
               foregroundColor: fontColor, // 设置按钮的前景色（文本颜色）
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(cornerRadius)), // 形状
-              elevation: 2, // 阴影高度
+              elevation: 0, // 阴影高度
             ),
             onPressed: onPressed,
             child: IntrinsicWidth(

@@ -67,5 +67,5 @@ class AppColors {
       255, 225, 195, 156);
   static const Color xxdClientResultText = Color.fromARGB(255, 18, 150, 255);
   static const Color smallTextYellow = Color.fromARGB(255,238,180,34);
-
+  static const Color xwdColorTheme = Color.fromARGB(255, 124, 198, 108);
 }

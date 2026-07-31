@@ -4,11 +4,12 @@ import '../utils/utils.dart';
 
 bottomSheet(
     {required BuildContext context,
-    required ValueChanged<int> onChanged, int? initialIndex=1,
+    required ValueChanged<int> onChanged,
+    int? initialIndex = 1,
     required List<String> listWeek}) {
   var selectIndex = 1;
-  if(initialIndex!=null){
-    selectIndex=initialIndex;
+  if (initialIndex != null) {
+    selectIndex = initialIndex;
   }
   showModalBottomSheet(
     context: context,
@@ -20,7 +21,8 @@ bottomSheet(
             WheelPicker(
               itemCount: listWeek.length,
               initialIndex: initialIndex,
-              builder: (context, index) => Text(listWeek[index]),
+              builder: (context, index) =>
+                  Text(listWeek[index].replaceAll("\n", "")),
               selectedIndexColor: Colors.orange,
               looping: false,
               onIndexChanged:
