@@ -105,7 +105,7 @@ class _BookmarksPageState extends State<BookmarksPage> {
           } else if (data.type == 2) {
             typeStr = "优享贷";
           } else if (data.type == 3) {
-            typeStr = "小微快贷";
+            typeStr = "菁英贷";
           }
           DateFormat formatter = DateFormat('yyyy-MM-dd HH:mm');
           String formattedDateTime = formatter.format(data.applyTime);

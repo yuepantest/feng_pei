@@ -28,7 +28,7 @@ class _XWDEvaluateResultState extends State<XWDEvaluateResult> {
         title: Padding(
             padding: EdgeInsets.only(right: duSetWidth(40)),
             child: const Text(
-              "小微快贷申请",
+              "菁英贷申请",
               style: TextStyle(
                   color: AppColors.primaryText, fontWeight: FontWeight.w600),
             )),

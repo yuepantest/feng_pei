@@ -7,6 +7,8 @@ import 'package:feng_pei/common/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:toast/toast.dart';
+import '../client/client.dart';
+import '../client/client_wait_check.dart';
 import '../client/kxd_client.dart';
 import '../client/xxd_client.dart';
 import '../client/yxd_client.dart';
@@ -62,7 +64,7 @@ class _CategoryPageState extends State<CategoryPage> {
           } else if (data.type == 2) {
             typeStr = "优享贷";
           } else if (data.type == 3) {
-            typeStr = "小微快贷";
+            typeStr = "菁英贷";
           }
           DateFormat formatter = DateFormat('yyyy-MM-dd HH:mm');
           String formattedDateTime = "";
@@ -112,28 +114,28 @@ class _CategoryPageState extends State<CategoryPage> {
                   ),
                 );
               } else {
-                // if (data.status == 2) {
-                //   Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //       builder: (context) => ClientPassPage(data: data),
-                //     ),
-                //   );
-                // } else if (data.status == 3) {
-                //   Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //       builder: (context) => ClientRefusePage(data: data),
-                //     ),
-                //   );
-                // } else if (data.status == 1) {
-                //   Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //       builder: (context) => ClientWaitCheckPage(data: data),
-                //     ),
-                //   );
-                // }
+                if (data.status == 2) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ClientPassPage(data: data),
+                    ),
+                  );
+                } else if (data.status == 3) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ClientRefusePage(data: data),
+                    ),
+                  );
+                } else if (data.status == 1) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ClientWaitCheckPage(data: data),
+                    ),
+                  );
+                }
               }
             },
             child: Padding(
@@ -204,31 +206,31 @@ class _CategoryPageState extends State<CategoryPage> {
                                 ),
                               );
                             } else {
-                              // if (data.status == 2) {
-                              //   Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //       builder: (context) =>
-                              //           ClientPassPage(data: data),
-                              //     ),
-                              //   );
-                              // } else if (data.status == 3) {
-                              //   Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //       builder: (context) =>
-                              //           ClientRefusePage(data: data),
-                              //     ),
-                              //   );
-                              // } else if (data.status == 1) {
-                              //   Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //       builder: (context) =>
-                              //           ClientWaitCheckPage(data: data),
-                              //     ),
-                              //   );
-                              // }
+                              if (data.status == 2) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        ClientPassPage(data: data),
+                                  ),
+                                );
+                              } else if (data.status == 3) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        ClientRefusePage(data: data),
+                                  ),
+                                );
+                              } else if (data.status == 1) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        ClientWaitCheckPage(data: data),
+                                  ),
+                                );
+                              }
                             }
                           },
                           gbColor: AppColors.buttonStatueOne,
